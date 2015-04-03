@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
@@ -8,15 +6,14 @@
 
 <title>Ross Meikleham</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="ghub2.css" type="text/css" media="screen,projection" />
 <link rel="stylesheet" href="1.css" type="text/css" media="screen,projection" />
 </head>
 <body>
 <div id="sidebar">
-  <h1><a href="#">Ross Meikleham</a>
-  </h1>
+  <h1><a href="#">Ross Meikleham</a></h1>
   <ol id="nav">
     <li><a href="index.html"><b>»</b>Home</a></li>
-    <li><a href="cv.html"><b>»</b>CV</a></li>
     <li><a href="gbc.html">Gameboy Emulator</li>
     <li><a href="schip8.html">Super CHIP8 Emulator</li>
     <li><a href="gpc.html">GPC Programming Language</li>
@@ -24,39 +21,98 @@
   </li>
 </div>
 <div id="content">
-  <h2 class="first"><a href="#" id="GB-Emu-C">Gameboy Emulator</a>
-   <a class="webicon github" href="https://github.com/RossMeikleham/GB-Emu-C">Github</a>
+  <h2 class="first"><a href="#" id="Super CHIP8 Emulator">GPC</a>
+   <a class="webicon github" href="https://github.com/RossMeikleham/GPC">Github</a>
   </h2>
-  <img src="images/zelda_col.png" alt="zelda_gbc">
-  <img src="images/gold.png" alt="gold.gpc">
-  <p> GB-Emu-C is a portable Nintendo Gameboy Emulator written in C using premade
-      sound libraries written in C++ written by 
-      <a href="http://www.slack.net/~ant/libs/audio.html">Blargg</a>. It currently
-      supports the following platforms:
-       <ol id="nav">
-       <li>Windows</li>
-       <li>Unix/Linux</li>
-       <li>Mac OSX</li>
-       <li>Sony PSP</li>
-       <li>Web Browsers through emscripten</li>
-    </ol>
-
-  This project was intended to learn more about how emulation works, 
-  as well as creating an application which is as portable as possible. 
-  I'm currently working on adding colour compatibility to the emulator as
-  well as focusing on fully working multiplayer games through serial link
-  cable using TCP-IP.
-
-  </p>
-    
-  <p>  
-  Thanks to emscripten which allows for compiling C/C++ to Javascript, it's possible
-  to embded the emulator in this page.
-  </p>
-
-
-<iframe src="gameboy.html" width="800" height="700" seamless></iframe>
   
+<body>
+  <div class="page">
+    <div class="preview-page">
+    <div class="container">
+      <div class="repository-with-sidebar repo-container with-full-navigation">
+
+        
+          <div class="repository-content context-loader-container">
+            <div id="readme" class="boxed-group flush clearfix announce instapaper_body md">
+              
+                <h3>
+                </h3>
+              
+              <div class="markdown-body entry-content">
+                <p>GPC is a front end language for the Glasgow Parallel Reduction Machine (GPRM) framework and is also my honours year project as a Student at the University of Glasgow. The language is a subset of C++ with two added keywords ("seq" and "par") to denote either sequential or parallel execution of code blocks. By default statements are evaluated in parallel. </p>
+
+<p>The compiler (GPCC) is a hybrid compiler/interpreter implemented in Haskell which performs type/scope checking on the entire GPC file. It then interprets the execution path of the GPC code from the entry function (except for actual kernel calls) and generates the kernel calls as Glasgow Parallel Intermediate Representation (GPIR) code to be ran on the GPRM. The purely functional nature of the language makes it possible to interpret the entire program at compile time.</p>
+
+<p>My dissertation on the design and compliation of the language can be found <a href="https://github.com/RossMeikleham/Dissertation">here</a></p>
+
+<p>The GPRM is a research project at the University Of Glasgow, more information on it can be found <a href="http://arxiv.org/pdf/1312.2703v1.pdf">here</a></p>
+
+<h1>
+<a id="user-content-mergesort-example" class="anchor" href="http://localhost:5000/#mergesort-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mergesort Example</h1>
+
+<div class="highlight highlight-c++"><pre><span class="pl-c">//Use Sort class from Kernel</span>
+GPRM::Kernel::Sort MS;
+
+<span class="pl-k">int</span> size = <span class="pl-c1">8</span>
+
+<span class="pl-k">void</span> <span class="pl-en">merge_sort</span>(<span class="pl-k">int</span> *a, <span class="pl-k">int</span> low, <span class="pl-k">int</span> high) {
+    <span class="pl-k">if</span> (low + <span class="pl-c1">1</span> &lt; high) {
+         mid = (low + high) / <span class="pl-c1">2</span>;
+
+         seq {
+            par {
+                 <span class="pl-c1">merge_sort</span>(a, low, mid);
+                 <span class="pl-c1">merge_sort</span>(a, mid, high);
+             }
+             MS.<span class="pl-c1">merge</span>(a, low, mid, high);
+         }
+    }
+}
+
+<span class="pl-k">void</span> <span class="pl-en">GPC_merge_sort</span>(<span class="pl-k">int</span> *a) {
+    <span class="pl-c1">merge_sort</span>(a, <span class="pl-c1">0</span>, size);
+}</pre></div>
+
+              </div>
+            </div>
+          </div>
+        
+
+      </div>
+    </div>
+  </div>
+  <div>&nbsp;</div>
+  </div><script>
+    function showCanonicalImages() {
+      var images = document.getElementsByTagName('img');
+      if (!images) {
+        return;
+      }
+      for (var index = 0; index < images.length; index++) {
+        var image = images[index];
+        if (image.getAttribute('data-canonical-src')) {
+          image.src = image.getAttribute('data-canonical-src');
+        }
+      }
+    }
+    function scrollToHash() {
+      if (location.hash && !document.querySelector(":target")) {
+        var element = document.getElementById('user-content-' + location.hash.slice(1));
+        if (element) {
+           element.scrollIntoView();
+        }
+      }
+    }
+    window.onhashchange = function() {
+      scrollToHash();
+    }
+    window.onload = function() {
+      scrollToHash();
+    }
+    showCanonicalImages();
+  </script>
+
+</body>
 
 <div id="footer"> 
 <a class="webicon linkedin large" href="https://www.linkedin.com/pub/ross-meikleham/7b/429/652">LinkedIn</a>
